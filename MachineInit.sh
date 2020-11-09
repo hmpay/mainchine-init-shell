@@ -9,7 +9,8 @@ echo "======================================================="
 
 echo "Install root ssh config -------------------------------"
 # no user interaction
-rm -rf /.ssh
+rm -rf /.ssh/id_rsa
+rm -rf /.ssh/id_rsa.pub
 ssh-keygen -t rsa -P "" -f /.ssh
 echo "${OPS_SSH_Public_key}" > /root/.ssh/authorized_keys
 echo "Install root ssh config end ---------------------------"
