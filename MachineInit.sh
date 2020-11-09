@@ -9,11 +9,14 @@ echo "======================================================="
 
 echo "Install root ssh config -------------------------------"
 # no user interaction
+rm -rf /.ssh
 ssh-keygen -t rsa -P "" -f /.ssh
 echo "${OPS_SSH_Public_key}" > /root/.ssh/authorized_keys
 echo "Install root ssh config end ---------------------------"
 
 echo "Install User ------------------------------------------"
+groupdel ${OPS_USER_NAME}
+userdel -r ${OPS_USER_NAME}
 useradd ${OPS_USER_NAME};groupadd ${OPS_USER_NAME}
 # generate ssh key for user
 ssh-keygen -t rsa -P "" -f /home/${OPS_USER_NAME}/.ssh
